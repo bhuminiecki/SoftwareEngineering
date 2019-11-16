@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "4e3acbcb-feb1-4d52-b009-8b31e98389d2",
+		"name": "IO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST scernario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"hello\",\n\t\"actors\": [\"olek\", \"wiech\"],\n\t\"steps\": [\n\t\t{\n\t\t\t\"content\": \"open chrome\",\n\t\t\t\"steps\": [\n\t\t\t\t{\n\t\t\t\t\t\"content\": \"click on chrome icon\",\n\t\t\t\t\t\"steps\": []\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"content\": \"go to google.com\",\n\t\t\t\"steps\": []\n\t\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/scenarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scenarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET scenario BY title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/scenarios?title=helloworld",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scenarios"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "helloworld"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

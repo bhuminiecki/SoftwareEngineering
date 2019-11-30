@@ -42,7 +42,6 @@ public class ScenarioControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
  
-        verify(scenarioMock, times(1)).findAll();
         verifyNoMoreInteractions(scenarioMock);
     }
 }

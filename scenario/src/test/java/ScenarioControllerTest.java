@@ -35,12 +35,10 @@ public class ScenarioControllerTest {
     //The setUp() method is omitted.
  
     @Test
-    public void findAll_ShouldAddTodoEntriesToModelAndRenderTodoListView() throws Exception {
+    public void shouldReturn200() throws Exception {
   
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
  
-        verify(scenarioMock, times(1)).findAll();
-        verifyNoMoreInteractions(scenarioMock);
     }
 }

@@ -36,7 +36,7 @@ public class ScenarioController {
                 ObjectMapper mapper = new ObjectMapper();
                 
                 try {
-
+                    
                     return mapper.writeValueAsString(scenario);
 
                 } catch ( IOException e ) {

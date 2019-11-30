@@ -11,12 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * REST controller of the scenario.
  * Exposes REST endpoints of the application.
  */
 @RestController
 public class ScenarioController {
+
+    private Logger logger; 
+
+    public ScenarioController () {
+        this.logger = LoggerFactory.getLogger(ScenarioController.class);
+    }
 
     /**
      * Endpoint for getting scenarios.
@@ -40,11 +49,12 @@ public class ScenarioController {
                 } catch ( IOException e ) {
 
                     e.printStackTrace();
+                    logger.error("Unable to return the scenario");
                     return "Unable to return the scenario";
-
                 }
             }
         }
+        logger.error("Unable to find scenario with that title");
         return "Unable to find scenario with that title";
     }
 
@@ -62,10 +72,8 @@ public class ScenarioController {
             Application.scenarios.add( scenario );
 
         } catch ( IOException e ) {
-
             e.printStackTrace();
             return;
-
         }
     }
 
@@ -110,11 +118,13 @@ public class ScenarioController {
                 } catch ( IOException e ) {
 
                     e.printStackTrace();
+                    logger.error("Unable to return the steps");
                     return "Unable to return the steps";
 
                 }
             }  
         }
+        logger.error("Unable to find the scenario");
         return "Unable to find the scenario";
     }
 }

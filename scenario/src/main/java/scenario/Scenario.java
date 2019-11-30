@@ -1,4 +1,4 @@
-package main.java.scenario;
+package scenario;
 
 import java.util.UUID;
 import java.util.ArrayList;

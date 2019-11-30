@@ -1,11 +1,9 @@
-package main.java.scenario;
+package scenario;
 
 import java.util.*;
 import java.io.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import main.java.scenario.Application;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

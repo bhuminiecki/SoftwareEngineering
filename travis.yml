@@ -1,2 +1,2 @@
-before_install: cd project
 language: java
+before_install: cd project

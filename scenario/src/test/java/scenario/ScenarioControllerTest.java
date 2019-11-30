@@ -35,13 +35,4 @@ public class ScenarioControllerTest {
     //Add WebApplicationContext field here
  
     //The setUp() method is omitted.
- 
-    @Test
-    public void findAll_ShouldAddTodoEntriesToModelAndRenderTodoListView() throws Exception {
-  
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk());
- 
-        verifyNoMoreInteractions(scenarioMock);
-    }
 }

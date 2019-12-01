@@ -1,3 +1,5 @@
+package scenario;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +21,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
- 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestContext.class, WebApplicationContext.class})
 @WebAppConfiguration
@@ -37,7 +39,12 @@ public class ScenarioControllerTest {
     @Test
     public void shouldReturn200() throws Exception {
   
-        mockMvc.perform(get("/")).andExpect(status().isOk());
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk());
  
+<<<<<<< HEAD:scenario/src/test/java/ScenarioControllerTest.java
+=======
+        verifyNoMoreInteractions(scenarioMock);
+>>>>>>> e3c4b474f6a7f539b614369c8bfecbf97c87e319:scenario/src/test/java/scenario/ScenarioControllerTest.java
     }
 }

@@ -1,11 +1,9 @@
-package main.java.scenario;
+package scenario;
 
 import java.util.*;
 import java.io.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import main.java.scenario.Application;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,12 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * REST controller of the scenario.
  * Exposes REST endpoints of the application.
  */
 @RestController
 public class ScenarioController {
+
+    private Logger logger; 
+
+    public ScenarioController () {
+        this.logger = LoggerFactory.getLogger(ScenarioController.class);
+    }
 
     /**
      * Endpoint for getting scenarios.
@@ -42,11 +49,12 @@ public class ScenarioController {
                 } catch ( IOException e ) {
 
                     e.printStackTrace();
+                    logger.error("Unable to return the scenario");
                     return "Unable to return the scenario";
-
                 }
             }
         }
+        logger.error("Unable to find scenario with that title");
         return "Unable to find scenario with that title";
     }
 
@@ -64,10 +72,8 @@ public class ScenarioController {
             Application.scenarios.add( scenario );
 
         } catch ( IOException e ) {
-
             e.printStackTrace();
             return;
-
         }
     }
 
@@ -83,7 +89,11 @@ public class ScenarioController {
             Scenario scenario = Application.scenarios.get(i);
 
             if ( scenario.getId().toString().equals(id) ) {
-                return scenario.countSteps();
+
+                StepCountVisitor stepCountVisitor = new StepCountVisitor();
+                stepCountVisitor.visit(scenario);
+                
+                return stepCountVisitor.stepCount;
             }  
         }
         return -1;
@@ -106,17 +116,22 @@ public class ScenarioController {
                 ObjectMapper mapper = new ObjectMapper();
                 
                 try {
+                    
+                    StepsWithoutActorsVisitor stepsWithoutActorsVisitor = new StepsWithoutActorsVisitor();
+                    stepsWithoutActorsVisitor.visit(scenario);
 
-                    return mapper.writeValueAsString( scenario.stepsWithoutActor() );
+                    return mapper.writeValueAsString( stepsWithoutActorsVisitor.stepsWithoutActor );
 
                 } catch ( IOException e ) {
 
                     e.printStackTrace();
+                    logger.error("Unable to return the steps");
                     return "Unable to return the steps";
 
                 }
             }  
         }
+        logger.error("Unable to find the scenario");
         return "Unable to find the scenario";
     }
 }

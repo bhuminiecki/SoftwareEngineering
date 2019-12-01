@@ -1,4 +1,4 @@
-package main.java.scenario;
+package scenario;
 
 import java.util.UUID;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class contains a scenario.
  */
-public class Scenario {
+public class Scenario implements Visitable {
 
     private UUID uuid;
     private String title;
@@ -34,32 +34,11 @@ public class Scenario {
         this.steps = steps;
     }
 
-    /**
-     * Returns the steps without assigned actor.
-     * @return A {List} of steps.
-     */
-    public ArrayList<String> stepsWithoutActor() {
-        ArrayList<String> steps = new ArrayList<String>();
-
-        for (Integer i = 0; i < this.steps.size(); i++) {
-            steps.addAll(this.steps.get(i).stepsWithoutActorRecursive(this.actors));
-        }
-
-        return steps;
+    //accept the visitor
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    /**
-     * Counts the steps of in scenario.
-     * @return {Integer} containing number of steps.
-     */
-    public Integer countSteps() {
-        Integer res = 0;
-        for (Integer i = 0; i < this.steps.size(); i++) {
-            res += this.steps.get(i).countStepsRecursive();
-        }
-        return res + this.steps.size();
-    }
-    
     /**
      * Getter for the Scenario UUID.
      * @return {UUID} of the Scenario.

@@ -38,13 +38,6 @@ public class ScenarioControllerTest {
  
     @Test
     public void shouldReturn200() throws Exception {
-  
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk());
- 
-<<<<<<< HEAD:scenario/src/test/java/ScenarioControllerTest.java
-=======
-        verifyNoMoreInteractions(scenarioMock);
->>>>>>> e3c4b474f6a7f539b614369c8bfecbf97c87e319:scenario/src/test/java/scenario/ScenarioControllerTest.java
+        mockMvc.perform(get("/")).andExpect(status().isOk());
     }
 }

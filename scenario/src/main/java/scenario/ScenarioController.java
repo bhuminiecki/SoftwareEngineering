@@ -20,9 +20,14 @@ import org.slf4j.LoggerFactory;
  */
 @RestController
 public class ScenarioController {
-
+	/**
+     * Logger object used to create a simple logging facade.
+     */
     private Logger logger; 
 
+	/**
+     * Class constructor, calls LoggerFactory and assigns returned value to the member: logger.
+     */
     public ScenarioController () {
         this.logger = LoggerFactory.getLogger(ScenarioController.class);
     }
@@ -135,6 +140,11 @@ public class ScenarioController {
         return "Unable to find the scenario";
     }
 
+	/**
+     * Endpoint for getting numerated steps of a scenario.
+     * @param id {String} of the scenario to match.
+     * @return {String} containing numerated steps of a scenario.
+     */
     @GetMapping("/numerate")
     public String numerateSteps(@RequestParam(value="id", defaultValue="") String id) {
         for (int i = 0; i < Application.scenarios.size(); i++) {

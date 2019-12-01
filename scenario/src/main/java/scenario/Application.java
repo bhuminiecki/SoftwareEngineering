@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Application {
+	/**
+     * A list of scenarios processed by the application.
+     */
     public static ArrayList<Scenario> scenarios = new ArrayList<Scenario>();
 
     /**

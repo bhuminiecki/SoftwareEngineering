@@ -3,15 +3,21 @@ package scenario;
 import java.util.ArrayList;
 
 /**
- * Class containing a Step.
+ * Class containing a single Step.
  */
 public class Step {
-
+	/**
+     * Content of the Step.
+     */
     private String content;
+	
+	/**
+     * List containing substeps of the Step.
+     */
     private ArrayList<Step> steps;
 
     /**
-     * Construct for the class.
+     * Constructor for the class.
      */
     public Step() {
         super();

@@ -134,4 +134,21 @@ public class ScenarioController {
         logger.error("Unable to find the scenario");
         return "Unable to find the scenario";
     }
+
+    @GetMapping("/numerate")
+    public String numerateSteps(@RequestParam(value="id", defaultValue="") String id) {
+        for (int i = 0; i < Application.scenarios.size(); i++) {
+            Scenario scenario = Application.scenarios.get(i);
+
+            if ( scenario.getId().toString().equals(id) ) {
+
+                NumerationVisitor numerationVisitor = new NumerationVisitor();
+                numerationVisitor.visit(scenario);
+                
+                return numerationVisitor.numerated;
+            }  
+        }
+        return "";
+    }
+
 }

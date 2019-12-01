@@ -35,6 +35,7 @@ public class ScenarioControllerTest {
     //Add WebApplicationContext field here
  
     //The setUp() method is omitted.
+<<<<<<< HEAD
  
     @Test
     public void shouldReturn200() throws Exception {
@@ -47,4 +48,6 @@ public class ScenarioControllerTest {
         verifyNoMoreInteractions(scenarioMock);
 >>>>>>> e3c4b474f6a7f539b614369c8bfecbf97c87e319:scenario/src/test/java/scenario/ScenarioControllerTest.java
     }
+=======
+>>>>>>> 43718b3f79fb1a02f09d2cc3aaffb607c71ee467
 }

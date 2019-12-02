@@ -101,7 +101,9 @@
 				<executions>
 					<execution>
 						<phase>prepare-package</phase>
-						<goal>javadoc</goal>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
 					</execution>
 				</executions>
         		<configuration>

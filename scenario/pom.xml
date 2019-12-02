@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-rest-service</artifactId>
-    <version>0.1.0</version>
+    <artifactId>ScenarioQualityChecker</artifactId>
+    <version>1.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -89,6 +89,7 @@
 
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -100,16 +101,13 @@
         		<version>3.1.1</version>
 				<executions>
 					<execution>
-						<phase>prepare-package</phase>
+						<phase>install</phase>
 						<goals>
 							<goal>javadoc</goal>
 						</goals>
 					</execution>
 				</executions>
         		<configuration>
-				<stylesheetfile>
-					${basedir}/docs/stylesheet.css
-				</stylesheetfile>
           		<show>private</show>
 			</configuration>
         	</plugin>

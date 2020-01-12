@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"title\": \"hello\",\n\t\"actors\": [\"olek\", \"wiech\"],\n\t\"steps\": [\n\t\t{\n\t\t\t\"content\": \"open chrome\",\n\t\t\t\"steps\": [\n\t\t\t\t{\n\t\t\t\t\t\"content\": \"click on chrome icon\",\n\t\t\t\t\t\"steps\": []\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"content\": \"go to google.com\",\n\t\t\t\"steps\": []\n\t\t}\n\t]\n}"
+					"raw": "{\n\t\"title\": \"browser\",\n\t\"actors\": [\"olek\", \"wiech\"],\n\t\"steps\": [\n\t\t{\n\t\t\t\"content\": \"open chrome\",\n\t\t\t\"steps\": [\n\t\t\t\t{\n\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\"steps\": [\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\t\t\"steps\": [\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"content\": \"go to google.com\",\n\t\t\t\"steps\": []\n\t\t}\n\t]\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/scenarios",
@@ -54,6 +54,56 @@
 							"value": "helloworld"
 						}
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Non-actor steps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Steps with depth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/stepswithdepth?id=d0179867-a7d8-4a82-8db1-e71f0e95b601&depth=0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stepswithdepth"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "d0179867-a7d8-4a82-8db1-e71f0e95b601"
+						},
+						{
+							"key": "depth",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Step with keyword count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []

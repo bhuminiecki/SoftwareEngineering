@@ -125,6 +125,43 @@ public class ScenarioController {
         }
         return -1;
     }
+    
+    /**
+     * Endpoint for getting steps containing a given word of a scenario.
+     * @param id {String} of the scenario to match.
+     * @param word {String} the word to search.
+     * @return payload containing steps without actors or an exception message in case no steps are found or scenario is not matched.
+     */
+    @GetMapping("/stepswithword")
+    public String getScenariosWithGivenWord(@RequestParam(value="id", defaultValue="") String id, @RequestParam(value="word", defaultValue="") String word) {
+        for (int i = 0; i < Application.scenarios.size(); i++) {
+
+            Scenario scenario = Application.scenarios.get(i);
+
+            if ( scenario.getId().toString().equals(id) ) {
+                
+
+                ObjectMapper mapper = new ObjectMapper();
+                
+                try {
+                    
+                    StepsWithGivenWordVisitor stepsWithGivenWordVisitor = new StepsWithGivenWordVisitor();
+                    stepsWithGivenWordVisitor.visitWithStringParam(scenario, word);
+
+                    return mapper.writeValueAsString( stepsWithGivenWordVisitor.stepsWithWord );
+
+                } catch ( IOException e ) {
+
+                    e.printStackTrace();
+                    logger.error("Unable to return the steps");
+                    return "Unable to return the steps";
+
+                }
+            }  
+        }
+        logger.error("Unable to find the scenario");
+        return "Unable to find the scenario";
+    }
 
     /**
      * Endpoint for getting the steps of a scenario to a certain depth.
@@ -146,7 +183,7 @@ public class ScenarioController {
                 try {
                     
                     StepsDepthVisitor stepsDepthVisitor = new StepsDepthVisitor();
-                    stepsDepthVisitor.visitWithParam(scenario, depth);
+                    stepsDepthVisitor.visitWithIntegerParam(scenario, depth);
 
                     return mapper.writeValueAsString( stepsDepthVisitor.stepsWithDepth );
 

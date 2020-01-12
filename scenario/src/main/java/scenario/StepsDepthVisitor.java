@@ -2,7 +2,7 @@ package scenario;
 
 import java.util.ArrayList;
 
-public class StepsDepthVisitor implements VisitorWithParam {
+public class StepsDepthVisitor implements VisitorWithIntegerParam {
 
     public Step stepsWithDepth;
 
@@ -10,7 +10,7 @@ public class StepsDepthVisitor implements VisitorWithParam {
         return;
     }
 
-    public void visitWithParam(Scenario scenario, Integer depth) {
+    public void visitWithIntegerParam(Scenario scenario, Integer depth) {
         this.stepsWithDepth = stepsWithDepthRecursive(
             new Step("STEPS WITH DEPTH: ", scenario.getSteps()), 
             depth);

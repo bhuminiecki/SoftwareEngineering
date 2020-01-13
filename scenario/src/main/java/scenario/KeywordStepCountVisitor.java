@@ -26,6 +26,3 @@ public class KeywordStepCountVisitor implements Visitor {
         return res;
     }     
 }
-
-
-

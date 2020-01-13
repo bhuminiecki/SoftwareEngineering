@@ -19,6 +19,3 @@ public class StepCountVisitor implements Visitor {
 
     }     
 }
-
-
-

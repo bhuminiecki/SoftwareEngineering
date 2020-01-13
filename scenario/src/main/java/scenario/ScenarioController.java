@@ -135,6 +135,12 @@ public class ScenarioController {
         return "Unable to find the scenario";
     }
 
+
+    /**
+     * Endpoint for getting numerated steps
+     * @param id id of the Scenario
+     * @return String containing numerated steps
+     */
     @GetMapping("/numerate")
     public String numerateSteps(@RequestParam(value="id", defaultValue="") String id) {
         for (int i = 0; i < Application.scenarios.size(); i++) {

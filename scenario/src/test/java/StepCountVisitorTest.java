@@ -175,4 +175,103 @@ class StepCountVisitorTest {
 
         assertEquals(12, result);
     }
+
+    @Test
+    void stepCount5() {
+        Step mockStep21 = mock(Step.class);
+        when(mockStep21.getSteps()).thenReturn(new ArrayList<>());
+        Step mockStep22 = mock(Step.class);
+        when(mockStep22.getSteps()).thenReturn(new ArrayList<>());
+
+        ArrayList<Step> mockList2 = new ArrayList<>();
+        mockList2.add(mockStep21);
+        mockList2.add(mockStep22);
+
+        Step mockStep11 = mock(Step.class);
+        when(mockStep11.getSteps()).thenReturn(new ArrayList<>());
+        Step mockStep12 = mock(Step.class);
+        when(mockStep12.getSteps()).thenReturn(new ArrayList<>());
+
+        ArrayList<Step> mockList1 = new ArrayList<>();
+        mockList1.add(mockStep11);
+        mockList1.add(mockStep12);
+
+        Step mockStep1 = mock(Step.class);
+        when(mockStep1.getSteps()).thenReturn(mockList1);
+        Step mockStep2 = mock(Step.class);
+        when(mockStep2.getSteps()).thenReturn(mockList2);
+
+        ArrayList<Step> mockList = new ArrayList<>();
+        mockList.add(mockStep1);
+        mockList.add(mockStep2);
+
+        Step mockStep = mock(Step.class);
+        when(mockStep.getSteps()).thenReturn(mockList);
+
+        int result = test.stepCount(mockStep);
+
+        assertEquals(6, result);
+    }
+
+    @Test
+    void stepCount6() {
+        Step mockStep11 = mock(Step.class);
+        when(mockStep11.getSteps()).thenReturn(new ArrayList<>());
+        Step mockStep12 = mock(Step.class);
+        when(mockStep12.getSteps()).thenReturn(new ArrayList<>());
+
+        ArrayList<Step> mockList1 = new ArrayList<>();
+        mockList1.add(mockStep11);
+        mockList1.add(mockStep12);
+
+        Step mockStep1 = mock(Step.class);
+        when(mockStep1.getSteps()).thenReturn(mockList1);
+        Step mockStep2 = mock(Step.class);
+        when(mockStep2.getSteps()).thenReturn(new ArrayList<>());
+        Step mockStep3 = mock(Step.class);
+        when(mockStep3.getSteps()).thenReturn(new ArrayList<>());
+
+        ArrayList<Step> mockList = new ArrayList<>();
+        mockList.add(mockStep1);
+        mockList.add(mockStep2);
+        mockList.add(mockStep3);
+
+        Step mockStep = mock(Step.class);
+        when(mockStep.getSteps()).thenReturn(mockList);
+
+        int result = test.stepCount(mockStep);
+
+        assertEquals(5, result);
+    }
+
+    @Test
+    void stepCount7() {
+        Step mockStep11 = mock(Step.class);
+        when(mockStep11.getSteps()).thenReturn(new ArrayList<>());
+        Step mockStep12 = mock(Step.class);
+        when(mockStep12.getSteps()).thenReturn(new ArrayList<>());
+
+        ArrayList<Step> mockList1 = new ArrayList<>();
+        mockList1.add(mockStep11);
+        mockList1.add(mockStep12);
+
+        Step mockStep1 = mock(Step.class);
+        when(mockStep1.getSteps()).thenReturn(mockList1);
+        Step mockStep2 = mock(Step.class);
+        when(mockStep2.getSteps()).thenReturn(new ArrayList<>());
+        Step mockStep3 = mock(Step.class);
+        when(mockStep3.getSteps()).thenReturn(new ArrayList<>());
+
+        ArrayList<Step> mockList = new ArrayList<>();
+        mockList.add(mockStep1);
+        mockList.add(mockStep2);
+        mockList.add(mockStep3);
+
+        Step mockStep = mock(Step.class);
+        when(mockStep.getSteps()).thenReturn(mockList);
+
+        int result = test.stepCount(mockStep);
+
+        assertEquals(5, result);
+    }
 }

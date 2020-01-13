@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "POST scernario",
+			"name": "POST scenario",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"title\": \"browser\",\n\t\"actors\": [\"olek\", \"wiech\"],\n\t\"steps\": [\n\t\t{\n\t\t\t\"content\": \"open chrome\",\n\t\t\t\"steps\": [\n\t\t\t\t{\n\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\"steps\": [\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\t\t\"steps\": [\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\"content\": \"olek click on chrome icon\",\n\t\t\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"content\": \"go to google.com\",\n\t\t\t\"steps\": []\n\t\t}\n\t]\n}"
+					"raw": "{\n\t\"title\": \"how to browse the web\",\n\t\"actors\": [\"olek\", \"fiodor\"],\n\t\"steps\": [\n\t\t{\n\t\t\t\"content\": \"FOR EACH website fiodor wants to see\",\n\t\t\t\"steps\": [\n\t\t\t\t{\n\t\t\t\t\t\"content\": \"IF fiodor is blind\",\n\t\t\t\t\t\"steps\": [\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek has to click on chrome icon\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek has to write the address\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek has click enter\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t}\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"content\": \"IF fiodor is blind\",\n\t\t\t\t\t\"steps\": [\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek has to click on chrome icon\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek has to write the address\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"content\": \"olek has click enter\",\n\t\t\t\t\t\t\t\"steps\": []\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"content\": \"go to google.com\",\n\t\t\t\"steps\": []\n\t\t}\n\t]\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/scenarios",
@@ -59,7 +59,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Non-actor steps",
+			"name": "GET non-actor steps",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -70,12 +70,12 @@
 			"response": []
 		},
 		{
-			"name": "GET Steps with depth",
+			"name": "GET steps with depth",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/stepswithdepth?id=d0179867-a7d8-4a82-8db1-e71f0e95b601&depth=0",
+					"raw": "localhost:8080/stepswithdepth?id=33665de0-3c77-4974-96b4-390692a0be26&depth=3",
 					"host": [
 						"localhost"
 					],
@@ -86,11 +86,11 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "d0179867-a7d8-4a82-8db1-e71f0e95b601"
+							"value": "33665de0-3c77-4974-96b4-390692a0be26"
 						},
 						{
 							"key": "depth",
-							"value": "0"
+							"value": "3"
 						}
 					]
 				}
@@ -98,12 +98,60 @@
 			"response": []
 		},
 		{
-			"name": "GET Step with keyword count",
+			"name": "GET steps with keyword count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/keywordstepcount?id=33665de0-3c77-4974-96b4-390692a0be26",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"keywordstepcount"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "33665de0-3c77-4974-96b4-390692a0be26"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET steps with word",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
 					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET steps with numeration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/numerate?id=33665de0-3c77-4974-96b4-390692a0be26",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"numerate"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "33665de0-3c77-4974-96b4-390692a0be26"
+						}
+					]
 				}
 			},
 			"response": []

@@ -1,5 +1,3 @@
-import static org.mockito.Mockito.*;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import scenario.KeywordStepCountVisitor;
@@ -8,6 +6,7 @@ import scenario.Step;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class KeywordStepCountVisitorTest {
     private static KeywordStepCountVisitor test;
@@ -18,7 +17,7 @@ class KeywordStepCountVisitorTest {
     }
 
     @Test
-    public void StepCount1(){
+    public void stepCount1() {
         Step mockStep1221 = mock(Step.class);
         when(mockStep1221.getSteps()).thenReturn(new ArrayList<>());
         when(mockStep1221.getContent()).thenReturn("Usun zawartosc linijki");
@@ -205,5 +204,87 @@ class KeywordStepCountVisitorTest {
         int result = test.stepCount(mockStep4);
 
         assertEquals(2, result);
+    }
+
+    @Test
+    void stepCount5() {
+        Step mockStep21 = mock(Step.class);
+        when(mockStep21.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep21.getContent()).thenReturn("Przeciwnik wykonuje ruch");
+        Step mockStep22 = mock(Step.class);
+        when(mockStep22.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep22.getContent()).thenReturn("Uzytkownik wykonuje ruch");
+
+        ArrayList<Step> mockList2 = new ArrayList<>();
+        mockList2.add(mockStep21);
+        mockList2.add(mockStep22);
+
+        Step mockStep11 = mock(Step.class);
+        when(mockStep11.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep11.getContent()).thenReturn("Uzytkownik klika na odpowiednia bierke");
+        Step mockStep12 = mock(Step.class);
+        when(mockStep12.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep12.getContent()).thenReturn("Uzytkownik klika na odpowiednie pole");
+
+        ArrayList<Step> mockList1 = new ArrayList<>();
+        mockList1.add(mockStep11);
+        mockList1.add(mockStep12);
+
+        Step mockStep1 = mock(Step.class);
+        when(mockStep1.getSteps()).thenReturn(mockList1);
+        when(mockStep1.getContent()).thenReturn("IF uzytkownik wybiera biale bierki");
+        Step mockStep2 = mock(Step.class);
+        when(mockStep2.getSteps()).thenReturn(mockList2);
+        when(mockStep2.getContent()).thenReturn("ELSE uzytkownik wybiera czarne bierki");
+
+        ArrayList<Step> mockList = new ArrayList<>();
+        mockList.add(mockStep1);
+        mockList.add(mockStep2);
+
+        Step mockStep = mock(Step.class);
+        when(mockStep.getSteps()).thenReturn(mockList);
+        when(mockStep.getContent()).thenReturn("Uzytkownik gra w szachy");
+
+        int result = test.stepCount(mockStep);
+
+        assertEquals(2, result);
+    }
+
+    @Test
+    void stepCount6() {
+
+        Step mockStep21 = mock(Step.class);
+        when(mockStep21.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep21.getContent()).thenReturn("Dziecko zdejmuje papierek");
+        Step mockStep22 = mock(Step.class);
+        when(mockStep22.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep22.getContent()).thenReturn("Dziecko zjada cukierek");
+
+        ArrayList<Step> mockList2 = new ArrayList<>();
+        mockList2.add(mockStep21);
+        mockList2.add(mockStep22);
+
+        Step mockStep1 = mock(Step.class);
+        when(mockStep1.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep1.getContent()).thenReturn("Dziecko otwiera pudełko");
+        Step mockStep2 = mock(Step.class);
+        when(mockStep2.getSteps()).thenReturn(mockList2);
+        when(mockStep2.getContent()).thenReturn("FOR EACH cukierek");
+        Step mockStep3 = mock(Step.class);
+        when(mockStep3.getSteps()).thenReturn(new ArrayList<>());
+        when(mockStep3.getContent()).thenReturn("Dziecko wyrzuca pudelko do kosza");
+
+        ArrayList<Step> mockList = new ArrayList<>();
+        mockList.add(mockStep1);
+        mockList.add(mockStep2);
+        mockList.add(mockStep3);
+
+        Step mockStep = mock(Step.class);
+        when(mockStep.getSteps()).thenReturn(mockList);
+        when(mockStep.getContent()).thenReturn("Dziecko chce zjesc pudelko cukierkow");
+
+        int result = test.stepCount(mockStep);
+
+        assertEquals(1, result);
     }
 }

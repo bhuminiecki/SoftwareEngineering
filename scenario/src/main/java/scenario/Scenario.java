@@ -7,10 +7,25 @@ import java.util.ArrayList;
  * Class contains a scenario.
  */
 public class Scenario implements Visitable {
-
+	/**
+     * Object containing UUID of the scenario.
+     * Used for distinguishing scenarios.
+     */
     private UUID uuid;
+	
+	/**
+     * String containing the title of the scenario.
+     */
     private String title;
+	
+	/**
+     * List of actors of the scenario.
+     */
     private ArrayList<String> actors;
+	
+	/**
+     * List of steps of the scenario.
+     */
     private ArrayList<Step> steps;
 
     /**
@@ -34,7 +49,10 @@ public class Scenario implements Visitable {
         this.steps = steps;
     }
 
-    //accept the visitor
+    /**
+     * Accepts a visitor.
+     * @param visitor {Visitor} to accept.
+     */
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }

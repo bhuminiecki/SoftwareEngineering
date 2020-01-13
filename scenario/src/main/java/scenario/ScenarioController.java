@@ -20,9 +20,14 @@ import org.slf4j.LoggerFactory;
  */
 @RestController
 public class ScenarioController {
-
+	/**
+     * Logger object used to create a simple logging facade.
+     */
     private Logger logger; 
 
+	/**
+     * Class constructor, calls LoggerFactory and assigns returned value to the member: logger.
+     */
     public ScenarioController () {
         this.logger = LoggerFactory.getLogger(ScenarioController.class);
     }
@@ -83,7 +88,7 @@ public class ScenarioController {
      * @return {Integer} ammount of steps in the scenario or -1 in case no scenario is matched.
      */
     @GetMapping("/stepcount")
-    public Integer getScenarioStepsById(@RequestParam(value="id", defaultValue="") String id) {
+    public Integer getScenarioStepCountById(@RequestParam(value="id", defaultValue="") String id) {
         for (int i = 0; i < Application.scenarios.size(); i++) {
 
             Scenario scenario = Application.scenarios.get(i);
@@ -97,6 +102,102 @@ public class ScenarioController {
             }  
         }
         return -1;
+    }
+
+    /**
+     * Endpoint for getting the ammount of steps starting with a keyword in the scenario.
+     * @param id {String} of the scenario to match.
+     * @return {Integer} amount of steps starting with a keyword in the scenario or -1 in case no scenario is matched.
+     */
+    @GetMapping("/keywordstepcount")
+    public Integer getScenarioStepCountWithKeywordById(@RequestParam(value="id", defaultValue="") String id) {
+        for (int i = 0; i < Application.scenarios.size(); i++) {
+
+            Scenario scenario = Application.scenarios.get(i);
+
+            if ( scenario.getId().toString().equals(id) ) {
+
+                KeywordStepCountVisitor keywordStepCountVisitor = new KeywordStepCountVisitor();
+                keywordStepCountVisitor.visit(scenario);
+
+                return keywordStepCountVisitor.stepCount;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Endpoint for getting steps containing a given word of a scenario.
+     * @param id {String} of the scenario to match.
+     * @param word {String} the word to search.
+     * @return payload containing steps without actors or an exception message in case no steps are found or scenario is not matched.
+     */
+    @GetMapping("/stepswithword")
+    public String getScenariosWithGivenWord(@RequestParam(value="id", defaultValue="") String id, @RequestParam(value="word", defaultValue="") String word) {
+        for (int i = 0; i < Application.scenarios.size(); i++) {
+
+            Scenario scenario = Application.scenarios.get(i);
+
+            if ( scenario.getId().toString().equals(id) ) {
+
+
+                ObjectMapper mapper = new ObjectMapper();
+
+                try {
+
+                    StepsWithGivenWordVisitor stepsWithGivenWordVisitor = new StepsWithGivenWordVisitor();
+                    stepsWithGivenWordVisitor.visitWithStringParam(scenario, word);
+
+                    return mapper.writeValueAsString( stepsWithGivenWordVisitor.stepsWithWord );
+
+                } catch ( IOException e ) {
+
+                    e.printStackTrace();
+                    logger.error("Unable to return the steps");
+                    return "Unable to return the steps";
+
+                }
+            }
+        }
+        logger.error("Unable to find the scenario");
+        return "Unable to find the scenario";
+    }
+
+    /**
+     * Endpoint for getting the steps of a scenario to a certain depth.
+     * @param id {String} of the scenario to match.
+     * @param depth {Integer} of the depth.
+     * @return {String} payload containing steps to certain depth or an exception message in case no steps are found or scenario is not matched.
+     */
+    @GetMapping("/stepswithdepth")
+    public String getScenarioStepsWithDepth(@RequestParam(value="id", defaultValue="") String id, @RequestParam(value="depth", defaultValue="") Integer depth) {
+        for (int i = 0; i < Application.scenarios.size(); i++) {
+
+            Scenario scenario = Application.scenarios.get(i);
+
+            if ( scenario.getId().toString().equals(id) ) {
+
+
+                ObjectMapper mapper = new ObjectMapper();
+
+                try {
+
+                    StepsDepthVisitor stepsDepthVisitor = new StepsDepthVisitor();
+                    stepsDepthVisitor.visitWithIntegerParam(scenario, depth);
+
+                    return mapper.writeValueAsString( stepsDepthVisitor.stepsWithDepth );
+
+                } catch ( IOException e ) {
+
+                    e.printStackTrace();
+                    logger.error("Unable to return the steps");
+                    return "Unable to return the steps";
+
+                }
+            }
+        }
+        logger.error("Unable to find the scenario");
+        return "Unable to find the scenario";
     }
 
     /**
@@ -135,11 +236,10 @@ public class ScenarioController {
         return "Unable to find the scenario";
     }
 
-
-    /**
-     * Endpoint for getting numerated steps
-     * @param id id of the Scenario
-     * @return String containing numerated steps
+	/**
+     * Endpoint for getting numerated steps of a scenario.
+     * @param id {String} of the scenario to match.
+     * @return {String} containing numerated steps of a scenario.
      */
     @GetMapping("/numerate")
     public String numerateSteps(@RequestParam(value="id", defaultValue="") String id) {
